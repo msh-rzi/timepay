@@ -17,6 +17,7 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-extra-boolean-cast": "off",
     "no-undef": "off",
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "no-restricted-syntax": "off",
     // add new line above comment

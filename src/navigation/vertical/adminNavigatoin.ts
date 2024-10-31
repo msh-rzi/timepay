@@ -109,30 +109,11 @@ const adminNavigation = (): VerticalNavItemsType => [
     ]
   },
   {
-    title: 'System Settings',
-    icon: 'mdi-cog',
-    action: 'manage',
-    subject: 'Settings',
-    children: [
-      {
-        title: 'Working Hours Rules',
-        path: '/admin/settings/work-hours',
-        action: 'update',
-        subject: 'WorkHoursSettings'
-      },
-      {
-        title: 'Leave Rules',
-        path: '/admin/settings/leave',
-        action: 'update',
-        subject: 'LeaveSettings'
-      },
-      {
-        title: 'Financial Settings',
-        path: '/admin/settings/finance',
-        action: 'update',
-        subject: 'FinanceSettings'
-      }
-    ]
+    title: 'Working Hours Rules',
+    icon: 'mdi-clock',
+    path: '/admin/settings/work-hours',
+    action: 'update',
+    subject: 'WorkHoursSettings'
   },
   {
     title: 'Access Management',

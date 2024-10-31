@@ -4,6 +4,8 @@ type UserType = {
   email: string // User's email
   role: string // User's role (could be 'Admin', 'Employee', etc.)
   position: string // User's position
+  status: 'Active' | 'Inactive'
+  phone: string // User's phone number
   startDate: string // Date the user joined the company
   salary: {
     total: number // Total monthly salary
@@ -35,7 +37,7 @@ type AttendanceType = {
   }
 }
 
-type TasksTyps = {
+type TasksType = {
   id: number
   company: string
   dueDate: string
@@ -53,7 +55,7 @@ type RequestsType = {
   details: string
 }
 
-type GeneralReportDetails = {
+type GeneralReportDetailsType = {
   fromDate: string
   toDate: string
   totalDays: number
@@ -64,7 +66,7 @@ type GeneralReportDetails = {
   totalRemaining: number
 }
 
-type DetailedReport = {
+type DetailedReportType = {
   id: number
   userId: number
   company: string
@@ -75,9 +77,28 @@ type DetailedReport = {
   wage: 'Daily Wage' | 'Normal'
 }
 
-type workDetails = {
+type workDetailsType = {
   isDailyWage: boolean
   workType: string
   partTimeHours: string | null
   description: string
+}
+
+type ReceivablesReportType = {
+  id: number
+  userId: number
+  company: string
+  amountDue: number
+  currency: string
+  dueDate: string
+  status: 'Pending' | 'Verified' | 'Rejected'
+  type?: 'Cash' | 'Bank Transfer' | 'Check'
+  description?: string
+}
+
+type ConstructionRoleType = {
+  id: number
+  role: string // نقش (مثال: استاد بنا)
+  position: string // سمت (مثال: نیروی میدانی)
+  description: string // توضیحات (شرح وظایف و مسئولیت‌ها)
 }

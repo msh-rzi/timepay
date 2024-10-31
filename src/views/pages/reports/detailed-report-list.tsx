@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import List from '@mui/material/List'
 import ListItemText from '@mui/material/ListItemText'
-import ListItemButton from '@mui/material/ListItemButton'
+import ListItem from '@mui/material/ListItem'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 
@@ -14,23 +14,20 @@ import Typography from '@mui/material/Typography'
 import Translations from 'src/layouts/components/Translations'
 import ScrollBar from 'react-perfect-scrollbar'
 
-// ** Fake Data
-import { fakeData } from 'src/@fake-data/data'
-
 // ** Hooks Import
 import useLang from 'src/hooks/useLang'
 
-const DetailedReportList = () => {
+const DetailedReportList = ({ data }: { data: DetailedReportType[] }) => {
   // ** Hook
   const { lc } = useLang()
 
   return (
     <ScrollBar>
       <Stack>
-        <List>
-          {fakeData.detailedReportList.map(item => (
+        <List sx={{ py: 0 }}>
+          {data.map(item => (
             <Fragment key={item.id}>
-              <ListItemButton sx={{ py: 1 }}>
+              <ListItem sx={{ py: 0 }}>
                 <ListItemText
                   sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                   primary={
@@ -61,10 +58,7 @@ const DetailedReportList = () => {
                       variant='body2'
                       sx={{
                         color: 'text.primary',
-                        display: 'inline',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
+                        display: 'block',
                         mt: 1
                       }}
                     >
@@ -72,7 +66,7 @@ const DetailedReportList = () => {
                     </Typography>
                   }
                 />
-              </ListItemButton>
+              </ListItem>
               <Divider variant='middle' component='li' />
             </Fragment>
           ))}

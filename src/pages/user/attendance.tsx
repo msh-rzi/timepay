@@ -17,14 +17,14 @@ import SwipeableDrawer from 'src/@core/components/drawer/swapeableDrawer'
 
 // ** Hooks Import
 import useLang from 'src/hooks/useLang'
-import AttendanceDetail from 'src/@core/layouts/components/attendance/attendance-detail'
-import AttendanceSelect from 'src/@core/layouts/components/attendance/attendance-select'
-import AttendanceWorkDetail from 'src/@core/layouts/components/attendance/attendance-work-detail'
+import AttendanceDetail from 'src/views/pages/attendance/attendance-detail'
+import AttendanceSelect from 'src/views/pages/attendance/attendance-select'
+import AttendanceWorkDetail from 'src/views/pages/attendance/attendance-work-detail'
 
 const Attendance = () => {
   // ** State
   const [data, setData] = useState<AttendanceType>(fakeData.attendance)
-  const [task, setTask] = useState<TasksTyps | null>(null)
+  const [task, setTask] = useState<TasksType | null>(null)
   const [loading, setLoading] = useState(false)
   const [openDrawer, setOpenDrawer] = useState(false)
 
@@ -53,11 +53,11 @@ const Attendance = () => {
     setOpenDrawer(true)
   }
 
-  const onTaskChange = (task: TasksTyps) => {
+  const onTaskChange = (task: TasksType) => {
     setTask(task)
   }
 
-  const onSaveWorkDetails = (workDetails: workDetails) => {
+  const onSaveWorkDetails = (workDetails: workDetailsType) => {
     new Promise(() => {
       setTimeout(() => {
         setLoading(false)

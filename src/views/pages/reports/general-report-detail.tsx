@@ -9,7 +9,7 @@ import Translations from 'src/layouts/components/Translations'
 import useLang from 'src/hooks/useLang'
 
 type ReportsDetailProps = {
-  details: GeneralReportDetails
+  details: GeneralReportDetailsType
 }
 
 const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {

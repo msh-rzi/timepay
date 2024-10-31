@@ -27,6 +27,12 @@ const userNavigation = (): VerticalNavItemsType => [
         path: '/user/reports/detailed-report',
         action: 'read',
         subject: 'WorkReport'
+      },
+      {
+        title: 'Receivables Report',
+        path: '/user/reports/receivables-report',
+        action: 'read',
+        subject: 'ReceivablesReport'
       }
     ]
   },

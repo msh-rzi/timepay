@@ -21,6 +21,7 @@ export const langConfig = {
     to: (date: Date) => date.toLocaleDateString('en-US', toConf),
     toTime: (date: Date) => new Intl.DateTimeFormat('en-US', timeConf).format(date),
     calendarType: 'iso8601',
+    currencySymbol: '$',
     convertNumber: (num: number, currency?: boolean) => {
       if (currency) {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num)
@@ -36,12 +37,12 @@ export const langConfig = {
     to: (date: Date) => date.toLocaleDateString('fa-IR', toConf),
     toTime: (date: Date) => new Intl.DateTimeFormat('fa-IR', timeConf).format(date),
     calendarType: 'islamic',
+    currencySymbol: 'تومان',
     convertNumber: (num: number, currency?: boolean) => {
       if (currency) {
         const formattedNumber = new Intl.NumberFormat('fa-IR', {
           style: 'currency',
-          currency: 'IRR',
-          currencyDisplay: 'symbol'
+          currency: 'IRR'
         }).format(num)
 
         return formattedNumber.replace('ریال', 'تومان') // replace ریا ل with تومان

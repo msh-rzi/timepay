@@ -10,7 +10,7 @@ import useLang from 'src/hooks/useLang'
 
 type AttendanceDetailProps = {
   data: AttendanceType
-  task: TasksTyps | null
+  task: TasksType | null
 }
 
 const AttendanceDetail = ({ data, task }: AttendanceDetailProps) => {

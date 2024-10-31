@@ -10,13 +10,13 @@ import Divider from '@mui/material/Divider'
 
 // ** Component Imports
 import Translations from 'src/layouts/components/Translations'
-import ReportsHeader from 'src/@core/layouts/components/reports/reports-header'
-import GeneralReportsDetail from 'src/@core/layouts/components/reports/general-report-detail'
+import ReportsHeader from 'src/views/pages/reports/reports-header'
+import GeneralReportsDetail from 'src/views/pages/reports/general-report-detail'
 
 import { fakeData } from 'src/@fake-data/data'
 
-const GeneralReports = () => {
-  const [data, setData] = useState<GeneralReportDetails | null>(null)
+const GeneralReport = () => {
+  const [data, setData] = useState<GeneralReportDetailsType | null>(null)
   const [loading, setLoading] = useState(false)
 
   const onClick = () => {
@@ -46,4 +46,4 @@ const GeneralReports = () => {
   )
 }
 
-export default GeneralReports
+export default GeneralReport

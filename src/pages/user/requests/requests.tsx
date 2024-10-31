@@ -6,9 +6,9 @@ import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 
 // ** Component Imports
-import RequestsHeader from 'src/@core/layouts/components/requests/requestsHeader'
-import RequestsList from 'src/@core/layouts/components/requests/requestsList'
-import RequestDetail from 'src/@core/layouts/components/requests/requestDetail'
+import RequestsHeader from 'src/views/pages/requests/requestsHeader'
+import RequestsList from 'src/views/pages/requests/requestsList'
+import RequestDetail from 'src/views/pages/requests/requestDetail'
 import Translations from 'src/layouts/components/Translations'
 
 type RequestsProps = {

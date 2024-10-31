@@ -11,7 +11,7 @@ import Translations from 'src/layouts/components/Translations'
 import LoadingButton from '@mui/lab/LoadingButton'
 
 type AttendanceWorkDetailProps = {
-  onSave: (data: workDetails) => void
+  onSave: (data: workDetailsType) => void
 }
 
 const AttendanceWorkDetail = ({ onSave }: AttendanceWorkDetailProps) => {

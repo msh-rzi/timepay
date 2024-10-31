@@ -13,13 +13,13 @@ import CustomAutocomplete from 'src/@core/components/mui/autocomplete'
 import { fakeData } from 'src/@fake-data/data'
 
 type AsyncAutoCompleteProps = {
-  onTaskChange: (newValue: TasksTyps) => void
+  onTaskChange: (newValue: TasksType) => void
   disabled: boolean
 }
 
 const AttendanceSelect = ({ onTaskChange, disabled }: AsyncAutoCompleteProps) => {
   const [open, setOpen] = useState(false)
-  const [taskList] = useState<TasksTyps[]>(fakeData.tasks)
+  const [taskList] = useState<TasksType[]>(fakeData.tasks)
   const [loading] = useState(false)
 
   const handleOpen = () => {
