@@ -1,11 +1,12 @@
 // ** React Imports
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import MenuItem from '@mui/material/MenuItem'
-import Button from '@mui/material/Button'
 import InputAdornment from '@mui/material/InputAdornment'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 
 // ** Custom Component Import
 import CustomTextField from 'src/@core/components/mui/text-field'
@@ -17,7 +18,7 @@ import { fakeData } from 'src/@fake-data/data'
 // ** Hooks
 import useLang from 'src/hooks/useLang'
 
-const AccountSettings = ({ user }: { user: UserType }) => {
+const UserSettings = ({ user, bottomAdornment }: { user: UserType; bottomAdornment?: ReactNode }) => {
   // ** State
   const [formData, setFormData] = useState<UserType>(user)
   const [data] = useState(fakeData)
@@ -59,9 +60,6 @@ const AccountSettings = ({ user }: { user: UserType }) => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <CustomTextField fullWidth disabled label={<Translations text='startDate' />} value={formData.startDate} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
           <CustomTextField
             select
             fullWidth
@@ -71,14 +69,32 @@ const AccountSettings = ({ user }: { user: UserType }) => {
               onChange: e => {
                 const v = e.target.value as string
                 handleFormChange('role', v)
-                const p = data.rolesData.find(r => r.role === v)
-                handleFormChange('position', p!.position)
               }
             }}
           >
-            {data.rolesData.map(option => (
-              <MenuItem key={option.id} value={option.role}>
-                <Translations text={option.role} />
+            {data.roles.map(option => (
+              <MenuItem key={option.id} value={option.name}>
+                <Translations text={option.name} />
+              </MenuItem>
+            ))}
+          </CustomTextField>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CustomTextField
+            select
+            fullWidth
+            label={<Translations text='position' />}
+            SelectProps={{
+              value: formData.position,
+              onChange: e => {
+                const v = e.target.value as string
+                handleFormChange('position', v)
+              }
+            }}
+          >
+            {data.positions.map(option => (
+              <MenuItem key={option.id} value={option.name}>
+                <Translations text={option.name} />
               </MenuItem>
             ))}
           </CustomTextField>
@@ -87,14 +103,14 @@ const AccountSettings = ({ user }: { user: UserType }) => {
           <CustomTextField
             fullWidth
             type='number'
-            label={<Translations text='total' />}
-            value={formData.salary.total}
+            label={<Translations text='Daily Wage' />}
+            value={formData.salary.daily}
             onChange={e => {
               setFormData({
                 ...formData,
                 salary: {
                   ...formData.salary,
-                  total: Number(e.target.value)
+                  daily: Number(e.target.value)
                 }
               })
             }}
@@ -124,18 +140,27 @@ const AccountSettings = ({ user }: { user: UserType }) => {
             }}
           />
         </Grid>
-
-        <Grid item xs={12} sx={{ pt: theme => `${theme.spacing(6.5)} !important` }}>
-          <Button variant='contained' sx={{ mr: 4 }}>
-            Save Changes
-          </Button>
-          <Button type='reset' variant='tonal' color='secondary'>
-            Reset
-          </Button>
+        <Grid item xs={12} sm={6}>
+          <FormControlLabel
+            sx={{
+              diaplay: 'flex',
+              flexDirection: 'row-reverse',
+              px: 4,
+              justifyContent: 'space-between'
+            }}
+            control={<Checkbox defaultChecked />}
+            label={<Translations text='isUserActive' />}
+          />
         </Grid>
+
+        {bottomAdornment && (
+          <Grid item xs={12} sx={{ pt: theme => `${theme.spacing(6.5)} !important` }}>
+            {bottomAdornment}
+          </Grid>
+        )}
       </Grid>
     </form>
   )
 }
 
-export default AccountSettings
+export default UserSettings

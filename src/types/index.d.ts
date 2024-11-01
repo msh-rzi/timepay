@@ -8,6 +8,7 @@ type UserType = {
   phone: string // User's phone number
   startDate: string // Date the user joined the company
   salary: {
+    daily: number // Daily wage
     total: number // Total monthly salary
     received: number // Salary already received this month
     remaining: number // Remaining salary to be paid
@@ -96,9 +97,11 @@ type ReceivablesReportType = {
   description?: string
 }
 
-type ConstructionRoleType = {
+type RoleType = {
   id: number
-  role: string // نقش (مثال: استاد بنا)
-  position: string // سمت (مثال: نیروی میدانی)
-  description: string // توضیحات (شرح وظایف و مسئولیت‌ها)
+  name: string
+}
+type PositionType = {
+  id: number
+  name: string
 }

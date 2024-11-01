@@ -26,18 +26,6 @@ const adminNavigation = (): VerticalNavItemsType => [
         path: '/admin/users/new',
         action: 'create',
         subject: 'User'
-      },
-      {
-        title: 'Edit User Profile',
-        path: '/admin/users/edit',
-        action: 'update',
-        subject: 'User'
-      },
-      {
-        title: 'Disable/Delete User',
-        path: '/admin/users/delete',
-        action: 'delete',
-        subject: 'User'
       }
     ]
   },
@@ -58,16 +46,16 @@ const adminNavigation = (): VerticalNavItemsType => [
         path: '/admin/requests/salary',
         action: 'read',
         subject: 'SalaryRequest'
+      },
+      {
+        title: 'Attendance Requests',
+        path: '/admin/requests/attendance',
+        action: 'read',
+        subject: 'Attendance'
       }
     ]
   },
-  {
-    title: 'Attendance Reports',
-    icon: 'mdi-calendar-check',
-    path: '/admin/reports/attendance',
-    action: 'read',
-    subject: 'Attendance'
-  },
+
   {
     title: 'Financial Management',
     icon: 'mdi-currency-usd',

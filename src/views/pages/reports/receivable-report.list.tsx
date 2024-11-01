@@ -49,7 +49,7 @@ const ReceivableReportList = ({ data }: { data: ReceivablesReportType[] }) => {
                         -
                         <Translations text={item.status} />
                       </Box>
-                      <span>{lc.to(new Date(item.dueDate))}</span>
+                      <span>{lc.formatDate(new Date(item.dueDate))}</span>
                     </Typography>
                   }
                   secondary={
@@ -78,7 +78,7 @@ const ReceivableReportList = ({ data }: { data: ReceivablesReportType[] }) => {
                             </>
                           )}
                         </Box>
-                        <span>{`${lc.convertNumber(item.amountDue, true)}`}</span>
+                        <span>{`${lc.formatNumber(item.amountDue, true)}`}</span>
                       </Typography>
                       {item.description && (
                         <Typography

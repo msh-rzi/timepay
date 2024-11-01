@@ -18,7 +18,7 @@ const AttendanceDetail = ({ data, task }: AttendanceDetailProps) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-      <Detail title='currentDate' useDef description={lc.to(new Date())} />
+      <Detail title='currentDate' useDef description={lc.formatDate(new Date())} />
       <Detail
         title='checkInTime'
         useDef={Boolean(data.currentStatus.checkInTime)}
@@ -29,12 +29,8 @@ const AttendanceDetail = ({ data, task }: AttendanceDetailProps) => {
         useDef={Boolean(data.currentStatus.checkOutTime)}
         description={data.currentStatus.checkOutTime || 'Not entered yet!'}
       />
-      <Detail title='weeklyWorkingDays' useDef description={lc.convertNumber(+data.weeklySummary.daysWorked) || '0'} />
-      <Detail
-        title='monthlyWorkingDays'
-        useDef
-        description={lc.convertNumber(+data.monthlySummary.daysWorked) || '0'}
-      />
+      <Detail title='weeklyWorkingDays' useDef description={lc.formatNumber(+data.weeklySummary.daysWorked) || '0'} />
+      <Detail title='monthlyWorkingDays' useDef description={lc.formatNumber(+data.monthlySummary.daysWorked) || '0'} />
       <Detail title='task' description={task?.company || 'Not entered yet!'} />
     </Box>
   )

@@ -23,7 +23,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='reportDateRange' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.to(new Date(details.fromDate))} - {lc.to(new Date(details.toDate))}
+          {lc.formatDate(new Date(details.fromDate))} - {lc.formatDate(new Date(details.toDate))}
         </Typography>
       </Stack>
 
@@ -32,7 +32,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalDays' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalDays)}
+          {lc.formatNumber(details.totalDays)}
         </Typography>
       </Stack>
       <Stack flexDirection='row' justifyContent='space-between'>
@@ -40,7 +40,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalHours' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalWorkHours)}
+          {lc.formatNumber(details.totalWorkHours)}
         </Typography>
       </Stack>
 
@@ -49,7 +49,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalLeaves' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalLeaves)}
+          {lc.formatNumber(details.totalLeaves)}
         </Typography>
       </Stack>
 
@@ -58,7 +58,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalSalary' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalSalary, true)}
+          {lc.formatNumber(details.totalSalary, true)}
         </Typography>
       </Stack>
 
@@ -67,7 +67,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalReceived' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalReceived, true)}
+          {lc.formatNumber(details.totalReceived, true)}
         </Typography>
       </Stack>
 
@@ -76,7 +76,7 @@ const GeneralReportsDetail = ({ details }: ReportsDetailProps) => {
           <Translations text='totalRemaining' />
         </Typography>
         <Typography sx={{ fontWeight: 'bold' }} variant='body2'>
-          {lc.convertNumber(details.totalRemaining, true)}
+          {lc.formatNumber(details.totalRemaining, true)}
         </Typography>
       </Stack>
     </Stack>

@@ -6,18 +6,21 @@ import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import CardHeader from '@mui/material/CardHeader'
 import IconButton from '@mui/material/IconButton'
-import Tooltip from '@mui/material/Tooltip'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 // ** Custom Component Import
 import SwipeableDrawer from 'src/@core/components/drawer/swapeableDrawer'
+import CustomTextField from 'src/@core/components/mui/text-field'
+import IconifyIcon from 'src/@core/components/icon'
+import Translations from 'src/layouts/components/Translations'
+import UserSettings from 'src/views/pages/users/TabUserSettings'
 
 // ** Utils Import
-import { fakeData } from 'src/@fake-data/data'
-import Translations from 'src/layouts/components/Translations'
 import useLang from 'src/hooks/useLang'
-import IconifyIcon from 'src/@core/components/icon'
-import AccountSettings from 'src/views/pages/users/accountSettings'
+
+// ** fake data
+import { fakeData } from 'src/@fake-data/data'
 
 const renderHeader = (field: string) => (
   <Typography sx={{ fontWeight: 'bold' }}>
@@ -30,11 +33,12 @@ interface CellType {
 }
 
 // ** Define UsersList Component
-const UsersList = () => {
+const TabUsersList = () => {
   const [data] = useState(fakeData.users)
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 5 })
   const [openDrawer, setOpenDrawer] = useState(false)
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null)
+  const [value, setValue] = useState<string>('')
 
   const { lc } = useLang()
 
@@ -73,7 +77,7 @@ const UsersList = () => {
         renderHeader: ({ field }) => renderHeader(field),
         renderCell: ({ row }: CellType) => (
           <Typography sx={{ color: 'text.secondary', fontSize: '0.8125rem' }}>
-            {lc.to(new Date(row.startDate))}
+            {lc.formatDate(new Date(row.startDate))}
           </Typography>
         )
       },
@@ -84,7 +88,7 @@ const UsersList = () => {
         renderHeader: ({ field }) => renderHeader(field),
         renderCell: ({ row }: CellType) => (
           <Typography sx={{ color: 'text.secondary', fontSize: '0.8125rem' }}>
-            {lc.convertNumber(row.salary.total, true)}
+            {lc.formatNumber(row.salary.total, true)}
           </Typography>
         )
       },
@@ -111,37 +115,33 @@ const UsersList = () => {
     []
   )
 
+  const handleFilter = (val: string) => {
+    setValue(val)
+  }
+
+  const filteredRows = data.reduce((newData: UserType[], user) => {
+    if (user.name.toLowerCase().includes(value)) newData.push(user)
+
+    return newData
+  }, [])
+
+  const onSaveClick = () => {
+    setOpenDrawer(false)
+    setSelectedUser(null)
+  }
+
+  const editUserAdornment = () => (
+    <LoadingButton onClick={onSaveClick} variant='contained'>
+      <Translations text='save' />
+    </LoadingButton>
+  )
+
   return data ? (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardHeader
         title={<Translations text='Users List' />}
         titleTypographyProps={{ sx: { mb: [2, 0], display: 'flex' } }}
-        action={
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <Tooltip title={<Translations text='search' />}>
-              <IconButton
-                color='primary'
-                onClick={() => {
-                  setSelectedUser(null)
-                  setOpenDrawer(true)
-                }}
-              >
-                <IconifyIcon icon='tabler:search' />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={<Translations text='add' />}>
-              <IconButton
-                color='primary'
-                onClick={() => {
-                  setSelectedUser(null)
-                  setOpenDrawer(true)
-                }}
-              >
-                <IconifyIcon icon='tabler:plus' />
-              </IconButton>
-            </Tooltip>
-          </div>
-        }
+        action={<CustomTextField value={value} placeholder='Search' onChange={e => handleFilter(e.target.value)} />}
         sx={{
           py: 4,
           flexDirection: ['row'],
@@ -152,7 +152,8 @@ const UsersList = () => {
 
       <DataGrid
         pagination
-        rows={data}
+        rows={filteredRows}
+        autoHeight
         rowHeight={62}
         columns={columns}
         pageSizeOptions={[5, 10]}
@@ -161,10 +162,14 @@ const UsersList = () => {
       />
 
       <SwipeableDrawer open={openDrawer} setOpen={setOpenDrawer} anchor='bottom' title='Edit User'>
-        {selectedUser ? <AccountSettings user={selectedUser} /> : <Typography>No user selected</Typography>}
+        {selectedUser ? (
+          <UserSettings user={selectedUser} bottomAdornment={editUserAdornment()} />
+        ) : (
+          <Typography>No user selected</Typography>
+        )}
       </SwipeableDrawer>
     </Card>
   ) : null
 }
 
-export default UsersList
+export default TabUsersList

@@ -49,7 +49,7 @@ const DetailedReportList = ({ data }: { data: DetailedReportType[] }) => {
                         -
                         <Translations text={item.wage} />
                       </Box>
-                      <span>{lc.to(new Date(item.date))}</span>
+                      <span>{lc.formatDate(new Date(item.date))}</span>
                     </Typography>
                   }
                   secondary={

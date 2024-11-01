@@ -101,7 +101,7 @@ const adminLastTransaction = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', '& img': { mr: 4 } }}>
                       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                         <Typography noWrap sx={{ fontWeight: 500, color: 'text.secondary' }}>
-                          {lc.convertNumber(row.amountDue, true)}
+                          {lc.formatNumber(row.amountDue, true)}
                         </Typography>
                         <Typography noWrap variant='body2' sx={{ color: 'text.disabled' }}>
                           {row.type}
@@ -121,7 +121,7 @@ const adminLastTransaction = () => {
                             color={statusObj[row.status].color}
                           />
                           <Typography noWrap variant='body2' sx={{ color: 'text.disabled' }}>
-                            {lc.to(new Date(row.dueDate))}
+                            {lc.formatDate(new Date(row.dueDate))}
                           </Typography>
                         </Box>
                       </Box>

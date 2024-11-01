@@ -7,7 +7,8 @@ type fakeDataType = {
   detailedReportList: DetailedReportType[]
   receivablesReport: ReceivablesReportType[]
   users: UserType[]
-  rolesData: ConstructionRoleType[]
+  roles: RoleType[]
+  positions: PositionType[]
 }
 
 export const fakeData: fakeDataType = {
@@ -15,12 +16,13 @@ export const fakeData: fakeDataType = {
     id: 1,
     name: 'مهدی رضایی',
     email: 'Mehdi.rezaei879@gmail.com',
-    role: 'Employee',
-    position: 'Master',
+    role: 'Mason',
+    position: 'Super Admin',
     status: 'Active',
     phone: '09164325523',
     startDate: '2022-01-15',
     salary: {
+      daily: 350,
       total: 5000,
       received: 4000,
       remaining: 1000
@@ -275,126 +277,28 @@ export const fakeData: fakeDataType = {
       assignedWorkers: 10
     }
   ],
-  rolesData: [
+  roles: [
     {
       id: 1,
-      role: 'Project Manager',
-      position: 'Project Director',
-      description: 'مسئول نظارت بر کل پروژه، مدیریت زمان و بودجه.'
+      name: 'Mason'
     },
     {
       id: 2,
-      role: 'Site Supervisor',
-      position: 'Daily Site Supervisor',
-      description: 'مسئولیت‌های روزانه سایت را مدیریت می‌کند و هماهنگی بین پیمانکاران را انجام می‌دهد.'
+      name: 'General Laborer'
+    }
+  ],
+  positions: [
+    {
+      id: 1,
+      name: 'Super Admin'
+    },
+    {
+      id: 2,
+      name: 'Admin'
     },
     {
       id: 3,
-      role: 'Civil Engineer',
-      position: 'Construction Engineer',
-      description: 'طراحی، برنامه‌ریزی و نظارت بر ساخت پروژه‌های زیرساختی.'
-    },
-    {
-      id: 4,
-      role: 'Architect',
-      position: 'Building Designer',
-      description: 'توسعه طرح‌های معماری پروژه و تأمین نیازهای زیبایی و عملکردی.'
-    },
-    {
-      id: 5,
-      role: 'Foreman',
-      position: 'Workforce Manager',
-      description: 'رهبری و مدیریت کارکنان در سایت، نظارت بر پیشرفت کار.'
-    },
-    {
-      id: 6,
-      role: 'Electrician',
-      position: 'Electrical Installer',
-      description: 'نصب و نگهداری سیستم‌های الکتریکی.'
-    },
-    {
-      id: 7,
-      role: 'Plumber',
-      position: 'Pipe and Sewage Installer',
-      description: 'نصب و تعمیر سیستم‌های لوله‌کشی آب و فاضلاب.'
-    },
-    {
-      id: 8,
-      role: 'Mason',
-      position: 'Construction Worker',
-      description: 'ساخت و تعمیر دیوارها و سازه‌های ساختمانی.'
-    },
-    {
-      id: 9,
-      role: 'Safety Officer',
-      position: 'Safety Inspector',
-      description: 'نظارت بر رعایت استانداردهای ایمنی و آموزش کارکنان.'
-    },
-    {
-      id: 10,
-      role: 'General Laborer',
-      position: 'General Worker',
-      description: 'انجام وظایف عمومی در سایت.'
-    },
-    {
-      id: 11,
-      role: 'Mechanical Technician',
-      position: 'Equipment Installer',
-      description: 'نصب و نگهداری تجهیزات مکانیکی.'
-    },
-    {
-      id: 12,
-      role: 'Fabrication Technician',
-      position: 'Material Fabricator',
-      description: 'ساخت و پردازش مصالح ساختمانی.'
-    },
-    {
-      id: 13,
-      role: 'Project Management Technician',
-      position: 'Project Assistant',
-      description: 'کمک به مدیر پروژه در برنامه‌ریزی و اجرا.'
-    },
-    {
-      id: 14,
-      role: 'Painter',
-      position: 'Painting Contractor',
-      description: 'انجام کارهای نقاشی و تزئینی.'
-    },
-    {
-      id: 15,
-      role: 'Tiler',
-      position: 'Tile Installer',
-      description: 'نصب کاشی‌ها و سرامیک‌ها.'
-    },
-    {
-      id: 16,
-      role: 'Concrete Finisher',
-      position: 'Concrete Worker',
-      description: 'کار با بتن و آماده‌سازی سطوح بتنی.'
-    },
-    {
-      id: 17,
-      role: 'Ground Services',
-      position: 'Ground Preparation',
-      description: 'آماده‌سازی و کار روی زمین و خاک‌برداری.'
-    },
-    {
-      id: 18,
-      role: 'Consulting Technician',
-      position: 'Technical Consultant',
-      description: 'ارائه مشاوره فنی به پروژه‌ها.'
-    },
-    {
-      id: 19,
-      role: 'Estimator',
-      position: 'Cost Estimator',
-      description: 'ارزیابی هزینه‌ها و تخمین بودجه پروژه.'
-    },
-    {
-      id: 20,
-      role: 'Quality Manager',
-      position: 'Quality Supervisor',
-      description: 'نظارت بر استانداردهای کیفیت و کنترل کیفیت پروژه.'
+      name: 'User'
     }
   ],
   users: [
@@ -403,11 +307,12 @@ export const fakeData: fakeDataType = {
       name: 'مهدی رضایی',
       email: 'mehdi.rezaei879@gmail.com',
       phone: '09123456789',
-      role: 'Mason',
+      role: 'Super Admin',
       position: 'Field Labor',
       startDate: '2022-01-15',
       status: 'Active',
       salary: {
+        daily: 350,
         total: 5000,
         received: 4000,
         remaining: 1000
@@ -423,11 +328,12 @@ export const fakeData: fakeDataType = {
       name: 'سارا احمدی',
       email: 'sara.ahmadi@gmail.com',
       phone: '09119876543',
-      role: 'Manager',
+      role: 'Admin',
       position: 'Manager',
       startDate: '2021-09-01',
       status: 'Active',
       salary: {
+        daily: 350,
         total: 8000,
         received: 6000,
         remaining: 2000
@@ -443,11 +349,12 @@ export const fakeData: fakeDataType = {
       name: 'علی حسینی',
       email: 'ali.hossini@gmail.com',
       phone: '09129871234',
-      role: 'Employee',
+      role: 'User',
       position: 'Engineer',
       startDate: '2023-05-10',
       status: 'Active',
       salary: {
+        daily: 350,
         total: 6000,
         received: 3000,
         remaining: 3000
@@ -463,11 +370,12 @@ export const fakeData: fakeDataType = {
       name: 'رضا قاسمی',
       email: 'reza.ghasemi@gmail.com',
       phone: '09127654321',
-      role: 'Supervisor',
-      position: 'Lead Engineer',
+      role: 'Mason',
+      position: 'Admin',
       startDate: '2020-03-15',
       status: 'Active',
       salary: {
+        daily: 350,
         total: 10000,
         received: 8000,
         remaining: 2000
@@ -483,11 +391,12 @@ export const fakeData: fakeDataType = {
       name: 'مینا توکلی',
       email: 'mina.tavakoli@gmail.com',
       phone: '09121234567',
-      role: 'Consultant',
-      position: 'Advisor',
+      role: 'General Laborer',
+      position: 'User',
       startDate: '2021-07-20',
       status: 'Active',
       salary: {
+        daily: 350,
         total: 9000,
         received: 7000,
         remaining: 2000

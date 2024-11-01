@@ -39,7 +39,7 @@ const DatePicker = () => {
         size='small'
         onClick={() => onChangeOpenCal(!openCal)}
       >
-        <span>{lc.to(value)}</span>
+        <span>{lc.formatDate(value)}</span>
       </Button>
 
       {openCal && (
