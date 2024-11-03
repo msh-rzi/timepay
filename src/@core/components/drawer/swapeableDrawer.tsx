@@ -15,6 +15,7 @@ type MuiSwipeableDrawerProps = React.ComponentProps<typeof MuiSwipeableDrawer>
 type SwipeableDrawerProps = {
   anchor: Anchor
   children?: React.ReactNode
+  actions?: React.ReactNode
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
   title?: string
@@ -33,7 +34,15 @@ const Puller = styled('div')(({ theme }) => ({
   })
 }))
 
-const SwipeableDrawer: React.FC<SwipeableDrawerProps> = ({ anchor, children, open, setOpen, title, ...props }) => {
+const SwipeableDrawer: React.FC<SwipeableDrawerProps> = ({
+  anchor,
+  children,
+  open,
+  setOpen,
+  title,
+  actions,
+  ...props
+}) => {
   const { PaperProps, ...otherProps } = props
 
   // Toggle the drawer open/close state
@@ -55,24 +64,28 @@ const SwipeableDrawer: React.FC<SwipeableDrawerProps> = ({ anchor, children, ope
       open={open}
       swipeAreaWidth={56}
       PaperProps={{
-        sx: { py: 6, px: 4, height: '90%', borderRadius: '15px 15px 0 0', ...PaperProps?.sx }
+        sx: { py: 6, px: 4, height: '95dvh', borderRadius: '15px 15px 0 0', ...PaperProps?.sx }
       }}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       {...otherProps}
     >
       <Puller />
-      <Stack spacing={4} sx={{ pt: 4, flex: 1 }}>
-        {title && (
-          <>
-            <Typography variant='button'>
-              <Translations text={title} />
-            </Typography>
-            <Divider sx={{ py: 2 }} />
-          </>
-        )}
-        {children}
-      </Stack>
+      {title && (
+        <Stack>
+          <Typography variant='button'>
+            <Translations text={title} />
+          </Typography>
+          <Divider sx={{ py: 2 }} />
+        </Stack>
+      )}
+      <Stack sx={{ py: 4, flex: 1, height: 'calc(100dvh - 200px)', overflow: 'auto', px: 1 }}>{children}</Stack>
+      {actions && (
+        <>
+          <Divider />
+          <Stack sx={{ height: '50px' }}>{actions}</Stack>
+        </>
+      )}
     </MuiSwipeableDrawer>
   )
 }

@@ -38,6 +38,8 @@ type AttendanceType = {
   }
 }
 
+type ApprovalType = 'Pending' | 'Verified' | 'Rejected'
+
 type TasksType = {
   id: number
   company: string
@@ -46,14 +48,25 @@ type TasksType = {
   assignedWorkers: number
 }
 
+type RequestsResponseType = {
+  id: number
+  userId: number
+  requestId: 1
+  responseDate: Date
+  reponseBy: number // who reposnded to
+  responseDetails: string
+}
+
 type RequestsType = {
   id: number
+  userId: number
   title: string
-  requestType: string
-  createdDate: string
-  status: string
-  approvalDate: string | null
+  createdDate: Date
+  status: ApprovalType
+  reviewDate: Date | null
   details: string
+  type: 'Leave' | 'Salary' | 'Attendance'
+  response?: RequestsResponseType[]
 }
 
 type GeneralReportDetailsType = {
@@ -92,7 +105,7 @@ type ReceivablesReportType = {
   amountDue: number
   currency: string
   dueDate: string
-  status: 'Pending' | 'Verified' | 'Rejected'
+  status: ApprovalType
   type?: 'Cash' | 'Bank Transfer' | 'Check'
   description?: string
 }

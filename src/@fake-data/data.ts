@@ -9,6 +9,7 @@ type fakeDataType = {
   users: UserType[]
   roles: RoleType[]
   positions: PositionType[]
+  approvalType: ApprovalType[]
 }
 
 export const fakeData: fakeDataType = {
@@ -53,48 +54,299 @@ export const fakeData: fakeDataType = {
   requests: [
     {
       id: 1,
-      title: 'Leave Request ',
-      requestType: 'Leave',
-      createdDate: '2024-10-01',
-      status: 'Pending',
-      approvalDate: null,
-      details: 'Request for 5 days of annual leave starting from 2024-10-15'
+      userId: 1,
+      title: ' مرخصی',
+      createdDate: new Date('2024-10-01'),
+      status: 'Verified',
+      reviewDate: null,
+      details: ' برای ۵ روز مرخصی سالانه از تاریخ 2024-10-15',
+      type: 'Leave',
+      response: [
+        {
+          id: 1,
+          userId: 1,
+          reponseBy: 2,
+          requestId: 1,
+          responseDetails: 'مرخصی دریافت شد',
+          responseDate: new Date('2024-10-05')
+        }
+      ]
     },
     {
       id: 2,
-      title: 'Salary Adjustment',
-      requestType: 'Salary',
-      createdDate: '2024-09-25',
-      status: 'Approved',
-      approvalDate: '2024-09-30',
-      details: 'Request for salary adjustment based on performance evaluation.'
+      userId: 2,
+      title: ' مرخصی استعلاجی',
+      createdDate: new Date('2024-10-05'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' برای ۳ روز مرخصی استعلاجی از تاریخ 2024-10-20',
+      type: 'Leave',
+      response: [
+        {
+          id: 1,
+          userId: 2,
+          reponseBy: 1,
+          requestId: 1,
+          responseDetails: 'مرخصی ات زیاد شده است',
+          responseDate: new Date('2024-10-05')
+        },
+        {
+          id: 2,
+          userId: 2,
+          reponseBy: 2,
+          requestId: 1,
+          responseDetails: 'مجبورم ',
+          responseDate: new Date('2024-10-05')
+        },
+        {
+          id: 3,
+          userId: 2,
+          reponseBy: 1,
+          requestId: 1,
+          responseDetails: 'باشه ',
+          responseDate: new Date('2024-10-05')
+        },
+        {
+          id: 4,
+          userId: 2,
+          reponseBy: 2,
+          requestId: 1,
+          responseDetails: 'مجبورم ',
+          responseDate: new Date('2024-10-05')
+        },
+        {
+          id: 5,
+          userId: 2,
+          reponseBy: 1,
+          requestId: 1,
+          responseDetails: 'باشه ',
+          responseDate: new Date('2024-10-05')
+        }
+      ]
     },
     {
       id: 3,
-      title: 'Leave Correction',
-      requestType: 'Leave',
-      createdDate: '2024-09-20',
-      status: 'Rejected',
-      approvalDate: '2024-09-25',
-      details: 'Correction for incorrect check-out time on 2024-09-19.'
+      userId: 3,
+      title: ' مرخصی سالانه',
+      createdDate: new Date('2024-10-08'),
+      status: 'Verified',
+      reviewDate: new Date('2024-10-10'),
+      details: ' برای ۷ روز مرخصی سالانه از تاریخ 2024-11-01',
+      type: 'Leave'
     },
     {
       id: 4,
-      title: 'Leave Request',
-      requestType: 'Leave',
-      createdDate: '2024-10-10',
+      userId: 4,
+      title: ' مرخصی عید',
+      createdDate: new Date('2024-11-01'),
       status: 'Pending',
-      approvalDate: null,
-      details: 'Request for 2 days sick leave starting from 2024-10-12.'
+      reviewDate: null,
+      details: ' برای ۵ روز مرخصی در ایام عید',
+      type: 'Leave'
     },
     {
       id: 5,
-      title: 'Bonus Request',
-      requestType: 'Salary',
-      createdDate: '2024-08-15',
-      status: 'Approved',
-      approvalDate: '2024-08-20',
-      details: 'Request for performance-based bonus for the month of July.'
+      userId: 5,
+      title: ' مرخصی برای سفر',
+      createdDate: new Date('2024-09-15'),
+      status: 'Rejected',
+      reviewDate: new Date('2024-09-20'),
+      details: ' برای ۱۰ روز مرخصی به دلیل سفر کاری',
+      type: 'Leave'
+    },
+    {
+      id: 6,
+      userId: 6,
+      title: ' مرخصی تابستانی',
+      createdDate: new Date('2024-06-01'),
+      status: 'Verified',
+      reviewDate: new Date('2024-06-05'),
+      details: ' برای ۱۵ روز مرخصی تابستانی',
+      type: 'Leave'
+    },
+    {
+      id: 7,
+      userId: 7,
+      title: ' مرخصی برای مطالعه',
+      createdDate: new Date('2024-10-12'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' برای ۲۰ روز مرخصی برای مطالعه',
+      type: 'Leave'
+    },
+    {
+      id: 8,
+      userId: 8,
+      title: ' مرخصی برای مراسم',
+      createdDate: new Date('2024-10-18'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' برای ۳ روز مرخصی به خاطر مراسم خانوادگی',
+      type: 'Leave'
+    },
+    {
+      id: 9,
+      userId: 9,
+      title: ' مرخصی به خاطر بیماری',
+      createdDate: new Date('2024-09-25'),
+      status: 'Verified',
+      reviewDate: new Date('2024-09-30'),
+      details: ' مرخصی به خاطر بیماری',
+      type: 'Leave'
+    },
+    {
+      id: 10,
+      userId: 10,
+      title: ' مرخصی برای مرگ عزیز',
+      createdDate: new Date('2024-11-02'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' برای ۵ روز مرخصی به خاطر مرگ عزیز',
+      type: 'Leave'
+    },
+
+    // Salary Requests
+    {
+      id: 11,
+      userId: 1,
+      title: 'تعدیل حقوق',
+      createdDate: new Date('2024-09-25'),
+      status: 'Verified',
+      reviewDate: new Date('2024-09-30'),
+      details: ' تعدیل حقوق بر اساس ارزیابی عملکرد',
+      type: 'Salary'
+    },
+    {
+      id: 12,
+      userId: 2,
+      title: ' افزایش حقوق',
+      createdDate: new Date('2024-08-20'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' افزایش حقوق بر اساس تجربه کار',
+      type: 'Salary'
+    },
+    {
+      id: 13,
+      userId: 3,
+      title: ' پاداش عملکرد',
+      createdDate: new Date('2024-10-01'),
+      status: 'Verified',
+      reviewDate: new Date('2024-10-05'),
+      details: ' پاداش به خاطر عملکرد فوق العاده',
+      type: 'Salary'
+    },
+    {
+      id: 14,
+      userId: 4,
+      title: ' پاداش تیمی',
+      createdDate: new Date('2024-10-15'),
+      status: 'Rejected',
+      reviewDate: new Date('2024-10-20'),
+      details: ' پاداش به خاطر پروژه تیمی',
+      type: 'Salary'
+    },
+    {
+      id: 15,
+      userId: 5,
+      title: ' اصلاح حقوق',
+      createdDate: new Date('2024-09-10'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' اصلاح حقوق بر اساس قرارداد جدید',
+      type: 'Salary'
+    },
+    {
+      id: 16,
+      userId: 6,
+      title: ' پاداش ماهانه',
+      createdDate: new Date('2024-07-15'),
+      status: 'Verified',
+      reviewDate: new Date('2024-07-20'),
+      details: ' پاداش براساس عملکرد ماهانه',
+      type: 'Salary'
+    },
+    {
+      id: 17,
+      userId: 7,
+      title: ' بررسی حقوق',
+      createdDate: new Date('2024-10-10'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' بررسی حقوق بر اساس خطا در پرداخت',
+      type: 'Salary'
+    },
+    {
+      id: 18,
+      userId: 8,
+      title: ' پاداش سالانه',
+      createdDate: new Date('2024-10-12'),
+      status: 'Verified',
+      reviewDate: new Date('2024-10-15'),
+      details: ' پاداش سالانه به خاطر عملکرد خوب',
+      type: 'Salary'
+    },
+    {
+      id: 19,
+      userId: 9,
+      title: ' اضافه کاری',
+      createdDate: new Date('2024-11-01'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' برای پرداخت اضافه کاری',
+      type: 'Salary'
+    },
+    {
+      id: 20,
+      userId: 10,
+      title: ' تسویه حساب',
+      createdDate: new Date('2024-10-20'),
+      status: 'Verified',
+      reviewDate: new Date('2024-10-22'),
+      details: ' برای تسویه حساب نهایی',
+      type: 'Salary'
+    },
+
+    // Attendance Requests
+    {
+      id: 21,
+      userId: 1,
+      title: ' ورود و خروج',
+      createdDate: new Date('2024-10-10'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' اصلاح ورود و خروج در تاریخ 2024-10-10',
+      type: 'Attendance'
+    },
+    {
+      id: 22,
+      userId: 2,
+      title: ' اصلاح ساعت ورود',
+      createdDate: new Date('2024-10-12'),
+      status: 'Verified',
+      reviewDate: new Date('2024-10-15'),
+      details: ' اصلاح ساعت ورود به دلیل خطای سیستمی',
+      type: 'Attendance'
+    },
+    {
+      id: 23,
+      userId: 3,
+      title: ' اصلاح ساعت خروج',
+      createdDate: new Date('2024-09-05'),
+      status: 'Rejected',
+      reviewDate: new Date('2024-09-10'),
+      details: ' اصلاح ساعت خروج به دلیل عدم حضور',
+      type: 'Attendance'
+    },
+    {
+      id: 24,
+      userId: 4,
+      title: ' ورود به جلسه',
+      createdDate: new Date('2024-09-20'),
+      status: 'Pending',
+      reviewDate: null,
+      details: ' ورود به جلسه در تاریخ 2024-09-22',
+      type: 'Attendance'
     }
   ],
   generalReportDetails: {
@@ -107,7 +359,6 @@ export const fakeData: fakeDataType = {
     totalReceived: 2000,
     totalRemaining: 3000
   },
-
   detailedReportList: [
     {
       id: 1,
@@ -370,8 +621,8 @@ export const fakeData: fakeDataType = {
       name: 'رضا قاسمی',
       email: 'reza.ghasemi@gmail.com',
       phone: '09127654321',
-      role: 'Mason',
-      position: 'Admin',
+      role: 'Admin',
+      position: 'Mason',
       startDate: '2020-03-15',
       status: 'Active',
       salary: {
@@ -391,8 +642,8 @@ export const fakeData: fakeDataType = {
       name: 'مینا توکلی',
       email: 'mina.tavakoli@gmail.com',
       phone: '09121234567',
-      role: 'General Laborer',
-      position: 'User',
+      role: 'User',
+      position: 'General Laborer',
       startDate: '2021-07-20',
       status: 'Active',
       salary: {
@@ -406,6 +657,217 @@ export const fakeData: fakeDataType = {
         used: 3,
         remaining: 17
       }
+    },
+    {
+      id: 6,
+      name: 'حسین کریمی',
+      email: 'hossein.karimi@gmail.com',
+      phone: '09128888888',
+      role: 'Admin',
+      position: 'Supervisor',
+      startDate: '2019-02-12',
+      status: 'Active',
+      salary: {
+        daily: 400,
+        total: 12000,
+        received: 10000,
+        remaining: 2000
+      },
+      leaveBalance: {
+        total: 25,
+        used: 15,
+        remaining: 10
+      }
+    },
+    {
+      id: 7,
+      name: 'فاطمه نظری',
+      email: 'fatemeh.nazari@gmail.com',
+      phone: '09125553344',
+      role: 'User',
+      position: 'Architect',
+      startDate: '2022-04-23',
+      status: 'Active',
+      salary: {
+        daily: 370,
+        total: 6000,
+        received: 3500,
+        remaining: 2500
+      },
+      leaveBalance: {
+        total: 28,
+        used: 8,
+        remaining: 20
+      }
+    },
+    {
+      id: 8,
+      name: 'محمد نوری',
+      email: 'mohammad.noori@gmail.com',
+      phone: '09124445566',
+      role: 'User',
+      position: 'Project Manager',
+      startDate: '2021-08-10',
+      status: 'Inactive',
+      salary: {
+        daily: 500,
+        total: 15000,
+        received: 12000,
+        remaining: 3000
+      },
+      leaveBalance: {
+        total: 35,
+        used: 25,
+        remaining: 10
+      }
+    },
+    {
+      id: 9,
+      name: 'زهرا باقری',
+      email: 'zahra.bagheri@gmail.com',
+      phone: '09127778899',
+      role: 'User',
+      position: 'Electrician',
+      startDate: '2020-11-25',
+      status: 'Active',
+      salary: {
+        daily: 380,
+        total: 9000,
+        received: 7500,
+        remaining: 1500
+      },
+      leaveBalance: {
+        total: 30,
+        used: 10,
+        remaining: 20
+      }
+    },
+    {
+      id: 10,
+      name: 'رضا جباری',
+      email: 'reza.jabbari@gmail.com',
+      phone: '09123332211',
+      role: 'User',
+      position: 'Plumber',
+      startDate: '2023-01-18',
+      status: 'Active',
+      salary: {
+        daily: 360,
+        total: 7000,
+        received: 4000,
+        remaining: 3000
+      },
+      leaveBalance: {
+        total: 20,
+        used: 7,
+        remaining: 13
+      }
+    },
+    {
+      id: 11,
+      name: 'مریم مرادی',
+      email: 'maryam.moradi@gmail.com',
+      phone: '09120001122',
+      role: 'Super Admin',
+      position: 'Safety Officer',
+      startDate: '2022-06-14',
+      status: 'Active',
+      salary: {
+        daily: 450,
+        total: 11000,
+        received: 9000,
+        remaining: 2000
+      },
+      leaveBalance: {
+        total: 25,
+        used: 10,
+        remaining: 15
+      }
+    },
+    {
+      id: 12,
+      name: 'علی رضاپور',
+      email: 'ali.rezapour@gmail.com',
+      phone: '09127889911',
+      role: 'Admin',
+      position: 'Welder',
+      startDate: '2021-03-10',
+      status: 'Active',
+      salary: {
+        daily: 370,
+        total: 13000,
+        received: 11000,
+        remaining: 2000
+      },
+      leaveBalance: {
+        total: 30,
+        used: 18,
+        remaining: 12
+      }
+    },
+    {
+      id: 13,
+      name: 'نرگس بهاری',
+      email: 'narges.bahari@gmail.com',
+      phone: '09123334455',
+      role: 'User',
+      position: 'Civil Engineer',
+      startDate: '2020-09-20',
+      status: 'Active',
+      salary: {
+        daily: 390,
+        total: 8000,
+        received: 5000,
+        remaining: 3000
+      },
+      leaveBalance: {
+        total: 22,
+        used: 7,
+        remaining: 15
+      }
+    },
+    {
+      id: 14,
+      name: 'حسین جعفری',
+      email: 'hossein.jafari@gmail.com',
+      phone: '09121230000',
+      role: 'User',
+      position: 'Laborer',
+      startDate: '2018-05-30',
+      status: 'Inactive',
+      salary: {
+        daily: 340,
+        total: 7000,
+        received: 7000,
+        remaining: 0
+      },
+      leaveBalance: {
+        total: 30,
+        used: 30,
+        remaining: 0
+      }
+    },
+    {
+      id: 15,
+      name: 'پروین امینی',
+      email: 'parvin.amini@gmail.com',
+      phone: '09127778822',
+      role: 'User',
+      position: 'Architect',
+      startDate: '2023-03-25',
+      status: 'Active',
+      salary: {
+        daily: 380,
+        total: 6000,
+        received: 2000,
+        remaining: 4000
+      },
+      leaveBalance: {
+        total: 25,
+        used: 5,
+        remaining: 20
+      }
     }
-  ]
+  ],
+  approvalType: ['Pending', 'Rejected', 'Verified']
 }
